@@ -1,15 +1,13 @@
-pipeline {
+node {
     parameters {
         string(name: 'REGISTRY_URL', defaultValue: '444716303806.dkr.ecr.ap-northeast-2.amazonaws.com', description: '')
         string(name: 'IMAGE_NAME', defaultValue: 'eks-demo', description: '')
         string(name: 'TAG', defaultValue: 'latest', description: '')
     }
-    stages {
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    kubernetesDeploy(configs: "eks-demo-deployment.yml", kubeconfigId: "my-kubeconfig")
-                }
+    stage('Deploy to Kubernetes') {
+        steps {
+            script {
+                kubernetesDeploy(configs: "eks-demo-deployment.yml", kubeconfigId: "my-kubeconfig")
             }
         }
     }
