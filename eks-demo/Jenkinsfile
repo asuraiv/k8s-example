@@ -9,7 +9,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    kubernetesDeploy(configs: "eks-demo-deployment.yml", kubeconfigId: "my-kubeconfig")
+                    kubernetesDeploy(configs: "eks-demo/demo-deployment.yml", kubeconfigId: "my-kubeconfig")
                 }
             }
         }
