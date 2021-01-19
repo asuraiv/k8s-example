@@ -1,10 +1,7 @@
 node {
   stage('List nodes') {
     withKubeConfig([credentialsId: 'jenkins-sa',
-                    serverUrl: 'https://5C920F00B42E2BCC161EA5F36ACD5E8A.yl4.ap-northeast-2.eks.amazonaws.com',
-                    contextName: 'demo-cluster',
-                    clusterName: 'demo-cluster',
-                    namespace: 'default'
+                    serverUrl: 'https://5C920F00B42E2BCC161EA5F36ACD5E8A.yl4.ap-northeast-2.eks.amazonaws.com'
                     ]) {
       sh 'kubectl get nodes'
     }
