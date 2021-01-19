@@ -4,10 +4,12 @@ pipeline {
         string(name: 'IMAGE_NAME', defaultValue: 'eks-demo', description: '')
         string(name: 'TAG', defaultValue: 'latest', description: '')
     }
-    stage('Deploy to Kubernetes') {
-        steps {
-            script {
-                kubernetesDeploy(configs: "eks-demo-deployment.yml", kubeconfigId: "my-kubeconfig")
+    stages {
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    kubernetesDeploy(configs: "eks-demo-deployment.yml", kubeconfigId: "my-kubeconfig")
+                }
             }
         }
     }
