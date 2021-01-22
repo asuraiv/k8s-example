@@ -16,12 +16,6 @@ spec:
     spec:
       containers:
       - name: eks-demo
-        env:
-          - name: TAG
-            valueFrom: 
-              configMapKeyRef:
-                name: demo-config
-                key: tag
-        image: 444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo:$(TAG)
+        image: "{URL}/{IMAGE}:{TAG}"
         ports:
         - containerPort: 8080
