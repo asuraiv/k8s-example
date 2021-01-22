@@ -6,7 +6,9 @@ node {
     }
     stage('Deploy to K8S Cluster') {
         withKubeConfig([credentialsId: 'demo-cluster-kubeconfig', serverUrl: 'https://EBF542A5733BBE7F5CB8317EAF1ABBE3.yl4.ap-northeast-2.eks.amazonaws.com']) {
-            sh 'kubectl apply -f ./eks-demo/demo-deployment.yaml --from-literal=REGISTRY_URL=${REGISTRY_URL} --from-literal=IMAGE_NAME=${IMAGE_NAME} --from-literal=TAG=${TAG}'
+            sh 'kubectl delete cm demo-config'
+            sh 'kubectl create cm demo-config --from-literal=url=${REGISTRY_URL} --from-literal=image=${IMAGE_NAME} --from-literal=tag=${TAG}'
+            sh 'kubectl apply -f ./eks-demo/demo-deployment.yaml'
         }
     }
 }
