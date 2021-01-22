@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: eks-demo
-        image: "{URL}/{IMAGE}:{TAG}"
+        image: "{url}/{image}:{tag}"
         ports:
         - containerPort: 8080
