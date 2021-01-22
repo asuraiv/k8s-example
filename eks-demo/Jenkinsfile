@@ -1,13 +1,12 @@
 node {
     parameters {
-        string(name: 'REGISTRY_URL', defaultValue: '444716303806.dkr.ecr.ap-northeast-2.amazonaws.com', description: '')
-        string(name: 'IMAGE_NAME', defaultValue: 'eks-demo', description: '')
         string(name: 'TAG', defaultValue: 'latest', description: '')
     }
     stage('Deploy to K8S Cluster') {
         withKubeConfig([credentialsId: 'demo-cluster-kubeconfig', serverUrl: 'https://EBF542A5733BBE7F5CB8317EAF1ABBE3.yl4.ap-northeast-2.eks.amazonaws.com']) {
-            sh 'kubectl create cm demo-config --from-literal=url=${REGISTRY_URL} --from-literal=image=${IMAGE_NAME} --from-literal=tag=${TAG} -o yaml --dry-run=client | kubectl replace -f -'
-            sh 'kubectl apply -f ./eks-demo/demo-deployment.yaml'
+            sh 'kubectl create cm demo-config --from-literal=tag=${TAG} -o yaml --dry-run=client | kubectl replace -f -'
+            sh 'kubectl apply -f ./eks-demo/demo-deployment.yaml --record'
+            sh 'kubectl rollout status deployment eks-demo'
         }
     }
 }

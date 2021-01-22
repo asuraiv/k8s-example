@@ -17,16 +17,6 @@ spec:
       containers:
       - name: eks-demo
         env:
-          - name: URL
-            valueFrom: 
-              congifgMapKeyRef:
-                name: demo-config
-                key: url
-          - name: IMAGE
-            valueFrom: 
-              congifgMapKeyRef:
-                name: demo-config
-                key: image
           - name: TAG
             valueFrom: 
               congifgMapKeyRef:
