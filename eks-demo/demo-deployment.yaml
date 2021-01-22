@@ -31,7 +31,7 @@ spec:
             valueFrom: 
               congifMapKeyRef:
                 name: demo-config
-                key: tag
+                key: tagTAG
         image: $(REGISTRY_URL):$(IMAGE_NAME):$(TAG)
         ports:
         - containerPort: 8080
