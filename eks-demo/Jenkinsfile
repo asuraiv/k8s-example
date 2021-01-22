@@ -16,7 +16,7 @@ node {
             sh "sed -i 's/{image}/${IMAGE_NAME}/' ./kube-example/eks-demo/demo-deployment.yaml"
             sh "sed -i 's/{tag}/${TAG}/' ./kube-example/eks-demo/demo-deployment.yaml"
 
-            sh 'kubectl apply -f ./eks-demo/demo-deployment.yaml --record'
+            sh 'kubectl apply -f ./kube-example/eks-demo/demo-deployment.yaml --record'
         }
     }
 }
