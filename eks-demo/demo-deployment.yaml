@@ -32,6 +32,6 @@ spec:
               congifgMapKeyRef:
                 name: demo-config
                 key: tag
-        image: $(REGISTRY_URL):$(IMAGE_NAME):$(TAG)
+        image: $(REGISTRY):$(IMAGE):$(TAG)
         ports:
         - containerPort: 8080
