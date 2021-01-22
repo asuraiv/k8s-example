@@ -32,6 +32,6 @@ spec:
               congifgMapKeyRef:
                 name: demo-config
                 key: tag
-        image: $(REGISTRY):$(IMAGE):$(TAG)
+        image: 444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo:$(TAG)
         ports:
         - containerPort: 8080
