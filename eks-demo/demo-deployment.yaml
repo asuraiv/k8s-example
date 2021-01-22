@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: eks-demo
-        image: ${REGISTRY_URL}:${IMAGE_NAME}:${TAG}
+        image: $(REGISTRY_URL):$(IMAGE_NAME):$(TAG)
         ports:
         - containerPort: 8080

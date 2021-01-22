@@ -1,15 +1,12 @@
-pipeline {
-    agent any
+node {
     parameters {
         string(name: 'REGISTRY_URL', defaultValue: '444716303806.dkr.ecr.ap-northeast-2.amazonaws.com', description: '')
         string(name: 'IMAGE_NAME', defaultValue: 'eks-demo', description: '')
         string(name: 'TAG', defaultValue: 'latest', description: '')
     }
-    stages {
-        stage('Deploy to Kubernetes') {
-            steps {
-                sh '/usr/local/bin/kubectl apply -f ./demo-deployment.yaml'    
-            }            
+    stage('Deploy to K8S Cluster') {
+        withKubeConfig([credentialsId: 'demo-cluster-kubeconfig', serverUrl: 'https://EBF542A5733BBE7F5CB8317EAF1ABBE3.yl4.ap-northeast-2.eks.amazonaws.com']) {
+            sh 'kubectl apply -f ./eks-demo/demo-deployment.yaml --from-literal=REGISTRY_URL=${REGISTRY_URL} --from-literal=IMAGE_NAME=${IMAGE_NAME} --from-literal=TAG=${TAG}'
         }
     }
 }
