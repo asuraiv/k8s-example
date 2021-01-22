@@ -16,6 +16,22 @@ spec:
     spec:
       containers:
       - name: eks-demo
+        env:
+          - name: REGISTRY_URL
+            valueFrom: 
+              congifMapKeyRef:
+                name: demo-config
+                key: url
+          - name: IMAGE_NAME
+            valueFrom: 
+              congifMapKeyRef:
+                name: demo-config
+                key: image
+          - name: TAG
+            valueFrom: 
+              congifMapKeyRef:
+                name: demo-config
+                key: tag
         image: $(REGISTRY_URL):$(IMAGE_NAME):$(TAG)
         ports:
         - containerPort: 8080
