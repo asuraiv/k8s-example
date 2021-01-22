@@ -19,17 +19,17 @@ spec:
         env:
           - name: REGISTRY_URL
             valueFrom: 
-              congifMapKeyRef:
+              congifgMapKeyRef:
                 name: demo-config
                 key: url
           - name: IMAGE_NAME
             valueFrom: 
-              congifMapKeyRef:
+              congifgMapKeyRef:
                 name: demo-config
                 key: image
           - name: TAG
             valueFrom: 
-              congifMapKeyRef:
+              congifgMapKeyRef:
                 name: demo-config
                 key: tagTAG
         image: $(REGISTRY_URL):$(IMAGE_NAME):$(TAG)
