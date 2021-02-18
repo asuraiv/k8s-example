@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ name: demo-foo-rc
+spec:
+ replicas: 3
+ selector:
+  app: foo-demo
+ template:
+  metadata:
+   labels:
+    app: foo-demo
+  spec:
+   containers:
+    - name: eks-demo
+      env:
+      - name: SERVICE_NAME
+        valueFrom:
+          configMapKeyRef:
+            name: foo-cm  # 이 값의 컨피그맵.
+            key: service-name # 가져올 키.
+      image: 444716303806.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo:latest
+      command: ["/bin/sh","-c", "java -jar -Dservice.name=$(SERVICE_NAME) eks-demo.jar"]

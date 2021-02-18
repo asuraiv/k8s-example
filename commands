@@ -1,0 +1,5 @@
+# 노드에 할당된 파드 조회
+$ kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName
+
+# Dashboard 로그인 토큰 조회
+$ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')

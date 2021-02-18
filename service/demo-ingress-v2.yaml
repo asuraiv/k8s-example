@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: demo-ing-v2
+ annotations:
+  kubernetes.io/ingress.class: alb
+  alb.ingress.kubernetes.io/scheme: internet-facing
+  alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=300
+spec:
+  backend:
+    serviceName: foo-nodeport
+    servicePort: 80
+  rules:
+    - host: foo-demo.example.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: foo-nodeport
+              servicePort: 80
+    - host: bar-demo.example.com
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: bar-nodeport
+              servicePort: 80          

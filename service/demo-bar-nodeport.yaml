@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: bar-nodeport
+spec:
+ type: NodePort
+ ports:
+  - port: 80
+    targetPort: 9090
+    protocol: TCP
+ selector:
+  app: bar-demo
+
+
+# esk-demo-svc.defalut.svc.cluster.local
